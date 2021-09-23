@@ -9,7 +9,7 @@
 #include <ctype.h>
 #include "Biblioteca.h"
 
-char menu (int flagA, int flagB, int num1, int num2, int flagCalculo, int suma, int resta, int multiplicacion, int division, float resulDivision, int flagResult){
+char menu(int flagA, int flagB, int num1, int num2, int flagCalculo, int suma, int resta, int multiplicacion, int division, float resulDivision, int factorialPrimerNumOk, int resulPrimerFactorial, int factorialSegundoNumOk, int resulSegundoFactorial, int flagResult){
 
     char opcion;
 
@@ -44,7 +44,7 @@ char menu (int flagA, int flagB, int num1, int num2, int flagCalculo, int suma, 
         	printf("b) Calcular la resta %d-%d.\n", num1,num2);
             printf("c) Calcular la multiplicacion %d*%d.\n", num1, num2);
             printf("d) Calcular la division %d/%d.\n", num1, num2);
-            //printf("e) Calcular  %d! y  %d!.\n", num1, num2);
+            printf("e) Calcular  %d! y  %d!.\n", num1, num2);
             printf("*********************************\n");
         }else{
         	 printf("3. Calcular todas las operaciones:\n");
@@ -73,14 +73,26 @@ char menu (int flagA, int flagB, int num1, int num2, int flagCalculo, int suma, 
                    printf("*********************************\n");
                    }
 
+                //Condicional de Factorizar primer operando
+                if(factorialPrimerNumOk){
+                	printf("e) El factorial de %d es %d. ", num1, resulPrimerFactorial);
+                } else {
+                	printf ("d. No se puede realizar el factorial del primer numero ingresado. ");
+                }
 
+                //Condicional de factorizar segundo operando
+                if(factorialSegundoNumOk){
+                	printf("El factorial de %d es %d.\n", num2, resulSegundoFactorial);
+                } else {
+                	printf (" No se puede realizar el factorial del segundo numero ingresado.\n");
+                }
 
             }else if(flagA && flagB){
                 printf("a) Resultado de %d+%d.\n", num1, num2);
                 printf("b) Resultado de %d-%d.\n", num1, num2);
                 printf("c) Resultado de %d*%d.\n", num1, num2);
                 printf("d) Resultado de %d/%d.\n", num1, num2);
-                //printf("e) Factorial de %d y el factorial de %d.\n", num1, num2);
+                printf("e) Factorial de %d y el factorial de %d.\n", num1, num2);
                 printf("*********************************\n");
             } else {
             	printf("a) Resultado de A+B.\n");
@@ -117,4 +129,19 @@ int division(int num1, int num2, float* pResulDivision){
 	        sePuedeDividir=1;
 	    }
 	    return sePuedeDividir;
+}
+
+int factorial(int num, int* factorialA)
+{
+	int sePuedeFactorizar=0;
+	if(num>0 && factorialA != NULL){
+		int factorial = 1;
+		for ( int i = 1; i <= num; i++) {
+			factorial*= i;
+			(*factorialA) = factorial;
+		 	}
+		sePuedeFactorizar = 1;
+	}
+
+	return (sePuedeFactorizar);
 }

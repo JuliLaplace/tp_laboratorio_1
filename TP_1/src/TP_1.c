@@ -36,13 +36,17 @@ int main()
     int resultadoMultiplicacion;
     int sePuedeDividir;
     float resultadoDivision;
+    int sePuedeFactorizarPNum;
+    int resulFactorialPrimerNum;
+    int sePuedeFactorizarSNum;
+    int resulFactorialSegundoNum;
 
 
 
 
     do{
 
-        switch(menu(flagPrimerNum, flagSegundoNum, primerNumero, segundoNumero, flagCalculos, resultadoSuma, resultadoResta, resultadoMultiplicacion, sePuedeDividir, resultadoDivision, flagResultado)){
+        switch(menu(flagPrimerNum, flagSegundoNum, primerNumero, segundoNumero, flagCalculos, resultadoSuma, resultadoResta, resultadoMultiplicacion, sePuedeDividir, resultadoDivision, sePuedeFactorizarPNum, resulFactorialPrimerNum, sePuedeFactorizarSNum, resulFactorialSegundoNum, flagResultado)){
 
             case '1':
             	flagPrimerNum=0; //Reinicio banderas.
@@ -77,6 +81,8 @@ int main()
                 resultadoResta = resta(primerNumero, segundoNumero);
                 resultadoMultiplicacion = multiplicacion(primerNumero, segundoNumero);
                 sePuedeDividir = division(primerNumero, segundoNumero, &resultadoDivision);
+                sePuedeFactorizarPNum = factorial(primerNumero, &resulFactorialPrimerNum);
+                sePuedeFactorizarSNum = factorial(segundoNumero, &resulFactorialSegundoNum);
 
 
                 printf("Calculos realizados.\nPresione enter para continuar.\n"); //Imprime en pantalla para avisar al usuario
