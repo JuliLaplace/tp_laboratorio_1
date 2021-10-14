@@ -11,14 +11,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ArrayEmployees.h"
+#include "utn.h"
+#include "Menu.h"
 
 #define TAM 5 //va 1000
 
-int menu();
-int subMenuInformar();
-int subMenuModificar();
+
+
 
 int main(void) {
+	setbuf(stdout,NULL);
 	eEmployee nomina[TAM];
 	    int id = 1000;
 	    int flagCargaEmployee = 0;
@@ -51,23 +53,11 @@ int main(void) {
 	                break;
 	            case 2:
 	                if(flagCargaEmployee){
-	                    switch(subMenuModificar()){
-	                        case 1:
-	                            printf("Nombre.");
-	                            break;
-	                        case 2:
-	                            printf("Apellido.");
-	                            break;
-	                        case 3:
-	                            printf("Salario.");
-	                            break;
-	                        case 4:
-	                            printf("Sector.");
-	                            break;
-	                        default:
-	                            printf("Opcion invalida.\n");
-	                            break;
-	                    }
+	                	 if(modificarEmployee(nomina, TAM) ==0){
+	                		 printf("Modificacion exitosa.\n");
+	                	 } else {
+	                	     printf("No se realizo la modificacion.\n");
+	                	 }
 	                }else{
 	                    printf("Primero debe cargar algun empleado.\n\n");
 	                }
@@ -90,10 +80,25 @@ int main(void) {
 
 	            case 4:
 	                if(flagCargaEmployee){
+	                	int orden;
 	                    switch(subMenuInformar()){
 	                        case 1:
+	                        	orden = subMenuListarEmpleados();
+	                        	printEmployees(nomina,TAM);
+
+	                        	if(sortEmployees(nomina, TAM, orden)==0){
+	                        	        printEmployees(nomina, TAM);
+
+	                        	}else{
+	                        	        printf("No se pudo ordenar\n");
+	                        	}
 	                            break;
 	                        case 2:
+	                        	if(promEmployees(nomina, TAM)==0){
+	                        		printf("\n\n Carga de promedio del salario exitosa.\n");
+	                        	} else {
+	                        	    printf("No se pudo realizar el promedio.\n");
+	                        	}
 	                            break;
 	                        default:
 	                            printf("Opcion invalida.\n\n");
@@ -120,59 +125,4 @@ int main(void) {
 	return EXIT_SUCCESS;
 }
 
-int menu(){
 
-
-    int opcion;
-    system("cls");
-    printf("*********************************************************************************************\n");
-    printf("*                                   NOMINA EMPLEADOS                                        *\n");
-    printf("*********************************************************************************************\n");
-
-
-    printf("    1) ALTA PERSONA.\n");
-    printf("    2) MODIFICAR PERSONA.\n");
-    printf("    3) BAJA PERSONA.\n");
-    printf("    4) INFORMAR:\n");
-    printf("        a) Listar empleados ordenados alfabéticamente por Apellido y Sector\n");
-    printf("        b) Total y promedio de los salarios, y cuántos empleados superan el salario promedio.\n");
-    printf("    5) SALIR.\n");
-    printf("*********************************************************************************************\n");
-    printf("Ingrese opcion deseada: ");
-    scanf("%d", &opcion);
-    printf("*********************************************************************************************\n");
-    return opcion;
-
-
-}
-
-int subMenuInformar(){
-    int opcion;
-    system("cls");
-    printf("*********************************************************************************************\n");
-    printf("*                                       INFORMAR                                            *\n");
-    printf("*********************************************************************************************\n");
-    printf("    1) Listado de los empleados ordenados alfabéticamente por Apellido y Sector.\n");
-    printf("    2) Total y promedio de los salarios, y cuántos empleados superan el salario promedio\n");
-    printf("*********************************************************************************************\n\n");
-    printf("Ingrese opcion a informar: ");
-    scanf("%d", &opcion);
-    return opcion;
-}
-
-
-int subMenuModificar(){
-    int opcion;
-    system("cls");
-    printf("*********************************************************************************************\n");
-    printf("*                                       MODIFICAR                                            *\n");
-    printf("*********************************************************************************************\n");
-    printf("    1) NOMBRE PERSONA.\n");
-    printf("    2) APELLIDO PERSONA.\n");
-    printf("    3) SALARIO PERSONA.\n");
-    printf("    4) SECTOR.\n");
-    printf("*********************************************************************************************\n\n");
-    printf("Ingrese opcion a informar: ");
-    scanf("%d", &opcion);
-    return opcion;
-}

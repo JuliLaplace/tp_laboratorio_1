@@ -144,6 +144,82 @@ int findEmployeeById(eEmployee* list, int len,int id){
     return indiceEmpleado;
 }
 
+int modificarEmployee (eEmployee* lista, int len)
+{
+    int id;
+    int i;
+    //int opcion;
+    int modificarOk;
+
+    system("cls");
+
+
+        printEmployees(lista, len);
+
+        printf("Ingrese el ID del empleado que desea modificar: ");
+        scanf("%d", &id);
+        i = findEmployeeById(lista, len, id);
+
+        if(lista!=NULL && len>0 && i!=-1){
+
+            showEmployee(lista[i]);
+            /*printf("\n");
+            printf("1) Nombre.\n");
+            printf("2) Apellido.\n");
+            printf("3) Salario.\n");
+            printf("4) Sector.\n");
+            printf("Ingrese de las opciones anteriores, cual desea modificar: ");
+            fflush(stdin);
+            scanf("%d", &opcion);*/
+
+            switch(subMenuModificar()){
+
+            case 1:
+                printf("Ingrese nuevo nombre:  ");
+                fflush(stdin);
+                gets(lista[i].name);
+                modificarOk=0;
+                break;
+
+            case 2:
+                printf("Ingrese nuevo apellido:  ");
+                fflush(stdin);
+                gets(lista[i].lastName);
+                modificarOk=0;
+                break;
+
+            case 3:
+
+                    if(utn_getNumeroFlotante(&lista[i].salary, "Ingrese sueldo de $0 a $500000: ", "Sueldo invalido. Reingrese valor: ", 0, 500000, 3)==0){
+                        printf("Sueldo correctamente cargado.\n");
+                    } else {
+                        printf("Error en la carga.\n");
+                    }
+                modificarOk=0;
+                break;
+
+            case 4:
+                    if(utn_getNumero(&lista[i].sector, "500)RRHH \n501)Ventas \n502)Administracion \n503)Sistemas \n504)Legales \nIngrese sector al que pertenece: ", "Sector invalido.\n", 500, 504, 3)==0){
+                        printf("Sector correctamente cargado.\n");
+                    } else {
+                        printf("Error en la carga.\n");
+                    }
+                modificarOk=0;
+                break;
+            default:
+                printf("Opcion invalida.\n");
+                modificarOk=-1;
+            }
+
+            }else{
+
+                printf("El ID ingresado no es un ID valido.\n");
+
+            }
+
+
+    return modificarOk;
+}
 
 int removeEmployee(eEmployee* list, int len, int id){
      int removeOk=-1;

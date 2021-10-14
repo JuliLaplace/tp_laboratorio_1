@@ -89,6 +89,8 @@ int findEmployeeById(eEmployee* list, int len,int id);
 int removeEmployee(eEmployee* list, int len, int id);
 
 
+int modificarEmployee (eEmployee* lista, int len);
+
 /** \brief
  *
  * \param list Employee*
