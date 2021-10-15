@@ -31,9 +31,7 @@ int main(void) {
 	    float sueldo;
 	    int sector;
 
-	    if(!initEmployees(nomina, TAM)){
-	        printf("Ocurrio un error al inicializar la lista.\n");
-	    }
+	    initEmployees(nomina, TAM);
 
 
 	    do{
@@ -84,7 +82,6 @@ int main(void) {
 	                    switch(subMenuInformar()){
 	                        case 1:
 	                        	orden = subMenuListarEmpleados();
-	                        	printEmployees(nomina,TAM);
 
 	                        	if(sortEmployees(nomina, TAM, orden)==0){
 	                        	        printEmployees(nomina, TAM);

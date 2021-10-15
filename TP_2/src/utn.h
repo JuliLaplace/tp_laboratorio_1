@@ -66,9 +66,6 @@ int esNumericoFlotante(char str[]);
 
 
 
-
-
-
 /**
  * \brief Verifica si el valor recibido contiene solo letras
  * \param str Array con la cadena a ser analizada

@@ -12,6 +12,7 @@
 #include <ctype.h>
 #include "ArrayEmployees.h"
 #include"utn.h"
+#include"Menu.h"
 
 
 int initEmployees(eEmployee* list, int len){
@@ -63,7 +64,7 @@ int pedirEmployee(char nombre[], char apellido[], float* sueldo, int* sector){
 
                 fflush(stdin);
                 nombreOk = getStringLetras("Ingrese su nombre: ", nombre);
-                if(nombreOk == 1){
+                if(nombreOk == 1 && strlen(nombre)<51){
                     printf("Carga de nombre exitosa.\n");
                 }else{
                     printf("Error en la carga.\n");
@@ -72,7 +73,7 @@ int pedirEmployee(char nombre[], char apellido[], float* sueldo, int* sector){
 
                 fflush(stdin);
                 apellidoOk = getStringLetras("Ingrese su apellido: ", apellido);
-                if(apellidoOk == 1){
+                if(apellidoOk == 1 && strlen(apellido)<51){
                     printf("Carga de apellido exitosa.\n");
                 }else{
                     printf("Error en la carga.\n");
@@ -148,8 +149,9 @@ int modificarEmployee (eEmployee* lista, int len)
 {
     int id;
     int i;
-    //int opcion;
     int modificarOk;
+    int nombreOk;
+    int apellidoOk;
 
     system("cls");
 
@@ -163,28 +165,32 @@ int modificarEmployee (eEmployee* lista, int len)
         if(lista!=NULL && len>0 && i!=-1){
 
             showEmployee(lista[i]);
-            /*printf("\n");
-            printf("1) Nombre.\n");
-            printf("2) Apellido.\n");
-            printf("3) Salario.\n");
-            printf("4) Sector.\n");
-            printf("Ingrese de las opciones anteriores, cual desea modificar: ");
-            fflush(stdin);
-            scanf("%d", &opcion);*/
 
             switch(subMenuModificar()){
 
             case 1:
-                printf("Ingrese nuevo nombre:  ");
-                fflush(stdin);
-                gets(lista[i].name);
-                modificarOk=0;
+            	  fflush(stdin);
+            	                nombreOk = getStringLetras("Ingrese nuevo nombre: ", lista[i].name);
+            	                if(nombreOk == 1 && strlen(lista[i].name)<51){
+            	                    printf("Carga de nombre exitosa.\n");
+            	                    modificarOk=0;
+            	                }else{
+            	                    printf("Error en la carga.\n");
+            	                    modificarOk=-1;
+            	                }
+
                 break;
 
             case 2:
-                printf("Ingrese nuevo apellido:  ");
-                fflush(stdin);
-                gets(lista[i].lastName);
+            	fflush(stdin);
+            	                apellidoOk = getStringLetras("Ingrese nuevo apellido: ",lista[i].lastName );
+            	                if(apellidoOk == 1 && strlen(lista[i].lastName)<51){
+            	                    printf("Carga de apellido exitosa.\n");
+            	                }else{
+            	                    printf("Error en la carga.\n");
+            	                }
+
+
                 modificarOk=0;
                 break;
 
@@ -272,12 +278,11 @@ int sortEmployees(eEmployee* list, int len, int order){
     int sortOk;
     eEmployee auxEmpleado;
     if(list!= NULL && len>0){
-        if(order==1){
+        if(order){
 
             for(int i =0; i<len-1; i++){
                 for (int j=i+1; j<len; j++){
-
-                    if(list[i].sector > list[j].sector || (list[i].sector == list[j].sector && strcmp(list[i].lastName, list[j].lastName)>0)){
+                	if(strcmp(list[i].lastName, list[j].lastName)>0 || (strcmp(list[i].lastName, list[j].lastName) == 0 && list[i].sector > list[j].sector)){
 
                         auxEmpleado = list[i];
                         list[i] = list[j];
@@ -289,8 +294,7 @@ int sortEmployees(eEmployee* list, int len, int order){
 
             for(int i =0; i<len-1; i++){
                 for (int j=i+1; j<len; j++){
-
-                    if(list[i].sector < list[j].sector || (list[i].sector == list[j].sector && strcmp(list[i].lastName, list[j].lastName)<0)){
+                	if(strcmp(list[i].lastName, list[j].lastName)<0 || (strcmp(list[i].lastName, list[j].lastName) == 0 && list[i].sector < list[j].sector)){
 
                         auxEmpleado = list[i];
                         list[i] = list[j];
