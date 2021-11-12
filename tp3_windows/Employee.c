@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "Employee.h"
+#include "utn.h"
 
 Employee* employee_new(){
 	Employee* nuevoEmpleado;
@@ -19,17 +20,17 @@ Employee* employee_new(){
 Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char* sueldoStr){
 	Employee* nuevoEmpleado = employee_new(); //aca pido malloc de Employee*
 
-	if(nuevoEmpleado!=NULL){
+	if(nuevoEmpleado!=NULL && idStr!=NULL && nombreStr!=NULL && horasTrabajadasStr!=NULL && sueldoStr!=NULL){
 	        if(!(employee_setId(nuevoEmpleado, atoi(idStr)) && employee_setNombre(nuevoEmpleado, nombreStr) && employee_setHorasTrabajadas(nuevoEmpleado, atoi(horasTrabajadasStr)) && employee_setSueldo(nuevoEmpleado, atoi(sueldoStr)))){
-	            free(nuevoEmpleado);
+	            employee_delete(nuevoEmpleado);
 	            nuevoEmpleado=NULL;
 	        }
 	    }
 
 	    return nuevoEmpleado;
 }
-void employee_delete(Employee* emp){
-	free(emp);
+void employee_delete(Employee* this){
+	free(this);
 }
 
 int employee_setId(Employee* this,int id){
@@ -86,12 +87,12 @@ int employee_getNombre(Employee* this,char* nombre){
 
 int employee_setHorasTrabajadas(Employee* this,int horasTrabajadas){
 	int todoOk=0;
-		    if(this!=NULL && horasTrabajadas>=1 && horasTrabajadas<=48){
+		    if(this!=NULL && horasTrabajadas>=1){
 		        this->horasTrabajadas = horasTrabajadas;
 		        todoOk=1;
 		    }
 		    else{
-		        printf("Sueldo Invalido \n");
+		        printf("Cantidad de horas trabajadas invalido. \n");
 		    }
 
 		return todoOk;
@@ -107,9 +108,9 @@ int employee_getHorasTrabajadas(Employee* this,int* horasTrabajadas){
 		    return todoOk;
 }
 
-int employee_setSueldo(Employee* this,int sueldo){
+int employee_setSueldo(Employee* this,float sueldo){
 	int todoOk=0;
-	    if(this!=NULL && sueldo>=50000 && sueldo<=200000){
+	    if(this!=NULL && sueldo>0){
 	        this->sueldo = sueldo;
 	        todoOk=1;
 	    }
@@ -119,7 +120,7 @@ int employee_setSueldo(Employee* this,int sueldo){
 
 	return todoOk;
 }
-int employee_getSueldo(Employee* this,int* sueldo){
+int employee_getSueldo(Employee* this,float* sueldo){
 	int todoOk=0;
 	    if(this!=NULL && sueldo!=NULL){
 	        *sueldo = this->sueldo;
