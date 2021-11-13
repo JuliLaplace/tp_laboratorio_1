@@ -77,7 +77,7 @@ int showEmployee(Employee* empleado);
  *
  * \param path char* archivo con data a ordenar
  * \param pArrayListEmployee LinkedList* lista de linkedlist
- * \return int
+ * \return int retorna 1 si logro ordenarlos empleados correctamente o 0 si no pudo realizarlo
  *
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee);
@@ -86,7 +86,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee);
  *
  * \param path char* archivo donde se guardaran los datos
  * \param pArrayListEmployee LinkedList* lista de linkedlist
- * \return int
+ * \return int retorna 1 si logro guardar el archivo como texto, o 0 si no logro realizarlo
  *
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee);
@@ -95,7 +95,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee);
  *
  * \param path char* archivo donde se guardaran los datos
  * \param pArrayListEmployee LinkedList* lista de linkedlist
- * \return int
+ * \return int retorna 1 si logro guardar el archivo como binario, o 0 si no logro realizarlo
  *
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee);

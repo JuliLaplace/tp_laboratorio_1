@@ -6,32 +6,31 @@
 
 int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
+	  int carga = 0;
 	    char buffer[4][120];
-	    int cant;
 		Employee* auxEmpleado=NULL;
 
 		if(pFile!=NULL && pArrayListEmployee!=NULL){
 
-			fscanf(pFile,"[^\n]\n"); //lectura fantasma primera linea
+			fscanf(pFile,"[^\n]\n");
 
-			 while(!feof(pFile))
-			    {
-			        cant = fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n", buffer[0], buffer[1], buffer[2], buffer[3]);
-			        if(cant==4)
-			        {
-			            auxEmpleado = employee_newParametros(buffer[0], buffer[1], buffer[2], buffer[3]);
+			while(!feof(pFile)){
 
-			            if(auxEmpleado!=NULL)
-			            {
-			                ll_add(pArrayListEmployee,auxEmpleado);
-			            }
+				fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n", buffer[0], buffer[1], buffer[2], buffer[3]);
 
-			        }
+				auxEmpleado = employee_newParametros(buffer[0],buffer[1],buffer[2],buffer[3]);
 
-			    }
+				if(auxEmpleado != NULL)
+				{
+					if(!ll_add(pArrayListEmployee,auxEmpleado))
+					{
+						carga++;
+					}
+				}
+			}
+			fclose(pFile);
 		}
-		fclose(pFile);
-		return 1;
+		return carga;
 }
 
 

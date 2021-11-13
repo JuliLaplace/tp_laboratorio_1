@@ -47,6 +47,7 @@ int main()
     	            	                system("pause");
     	            	                break;
     	            case 2:
+
     	            	if(controller_loadFromBinary("data.bin",listaEmpleados)){
     	            	                    printf("Datos de empleados cargados desde el archivo data.bin con exito.\n ");
     	            	                    flag=1;
@@ -62,42 +63,28 @@ int main()
     	            	                system("pause");
     	            	                break;
     	            case 4:
-    	                switch(submenu()){
-    	                	case 1:
+    	            	if(flag){
+    	            		controller_editEmployee(listaEmpleados);
+    	            	}else{
+    	            		printf("Primero debes cargar datos de empleados en la lista.\n");
+    	            	}
 
-    	                        printf("Nombre de empleado modificado con exito.\n");
-
-    	                        system("pause");
-    	                        break;
-
-    	                	case 2:
-
-    	                        printf("Horas trabajadas por empleado modificadas con exito.\n");
-
-    	                        system("pause");
-    	                        break;
-
-    	                	case 3:
-
-    	                        printf("Sueldo de empleado modificado con exito.\n");
-
-    	                        system("pause");
-    	                        break;
-
-    	                	default:
-    	                		printf("Opcion incorrecta.\n");
-    	                		system("pause");
-    	                		break;
-    	                	}
     	                system("pause");
     	                break;
 
     	            case 5:
-    	            	 if(flag && controller_removeEmployee(listaEmpleados)){
-    	            	                    printf("Empleado eliminado con exito.\n");
-    	            	                }
-    	            	                system("pause");
-    	            	                break;
+    	            	 if(flag){
+    	            		 if(controller_removeEmployee(listaEmpleados)){
+
+    	            			 printf("Empleado eliminado con exito.\n");
+    	            	     }else{
+    	            	          printf("Baja cancelada\n");
+    	            	     }
+    	            	 }else{
+    	            		 printf("Primero debes cargar datos de empleados en la lista.\n");
+    	            	 	 }
+    	            	  system("pause");
+    	            	  break;
 
     	            case 6:
 
@@ -105,44 +92,21 @@ int main()
     	            		if(flag && controller_ListEmployee(listaEmpleados)){
     	            			printf("Empleados listados con exito.\n");
     	            		}else{
-    	            			printf("Primero debes cargar empleados en la lista.\n");
+    	            			printf("Primero debes cargar datos de empleados en la lista.\n");
     	            		}
 
     	                system("pause");
     	                break;
 
     	            case 7:
-
-    	            	//controller_sortEmployee(LinkedList* pArrayListEmployee);
-    	            	//controller_ListEmployee(LinkedList* pArrayListEmployee);
-
     	                if(flag){
-    	                	switch(subMenuOrden()){
-								case 1:
-									printf("Ordenar empleados por nombre.\n");
+    	                	if(controller_sortEmployee(listaEmpleados)){
 
-									system("pause");
-									break;
+    	                		printf("Empleados ordenados.\n");
+    	                	}
 
-								case 2:
-
-									printf("Ordenar empleados por horas.\n");
-										system("pause");
-									break;
-
-								case 3:
-									printf("Ordenar empleados por sueldo.\n");
-									system("pause");
-									break;
-
-
-								default:
-									printf("Opcion incorrecta.\n");
-									system("pause");
-									break;
-								}
     	                }else{
-    	                	printf("Primero debes cargar empleados en la lista.\n");
+    	                	printf("Primero debes cargar datos de empleados en la lista.\n");
     	                }
 
     	                system("pause");
@@ -150,12 +114,10 @@ int main()
 
     	            case 8:
 
-
-
     	            		if(flag && controller_saveAsText("data.csv", listaEmpleados)){
     	            			 printf("Empleado cargados con exito.\n");
     	            		}else{
-    	            			printf("Primero debes cargar empleados en la lista.\n");
+    	            			printf("Primero debes cargar datos de empleados en la lista (opcion 1), luego cargarlos como data.cvs (opcion8).\n");
     	            		}
 
 
@@ -167,8 +129,9 @@ int main()
 
     	            		if(flag && controller_saveAsBinary("data.bin", listaEmpleados)){
     	            			 printf("Empleado cargados con exito.\n");
+
     	            		}else{
-    	            			printf("Primero debes cargar empleados en la lista.\n");
+    	            			printf("Primero debes cargar datos de empleados en la lista (opcion1), luego cargarlos como data.bin (opcion 9).\n");
     	            		}
 
 

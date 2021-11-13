@@ -62,9 +62,9 @@ int subMenuOrden(){
         printf("*****************************************************************************************\n");
         printf("\t\t\t   ********ORDENAR EMPLEADO********\n");
         printf("*****************************************************************************************\n");
-        printf("1. Ordenar nombres de empleados alfabeticamente (ascendente). \n");
-        printf("2. Ordenar empleados de menor sueldo a mayor sueldo. \n");
-        printf("3. Ordenar empleados de menor cantidad de horas trabajadas a mayor cantidad. \n");
+        printf("1. Ordenar nombres de empleados.\n");
+        printf("2. Ordenar empleados por horas trabajadas. \n");
+        printf("3. Ordenar empleados por sueldo. \n");
         printf("*****************************************************************************************\n");
         fflush(stdin);
         printf("Ingrese la opcion deseada: ");
