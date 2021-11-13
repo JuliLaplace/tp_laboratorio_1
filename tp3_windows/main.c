@@ -59,6 +59,8 @@ int main()
     	            case 3:
     	            	 if(controller_addEmployee(listaEmpleados, &id)){
     	            	                    printf("Empleado cargado con exito.\n");
+    	            	                }else{
+    	            	                	printf("Error en ingreso de datos: no se pudo cargar el empleado.\n");
     	            	                }
     	            	                system("pause");
     	            	                break;
