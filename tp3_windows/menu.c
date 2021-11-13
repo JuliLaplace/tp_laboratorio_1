@@ -55,21 +55,4 @@ int submenu(){
 
 }
 
-int subMenuOrden(){
-    int opcion;
-        system("cls");
 
-        printf("*****************************************************************************************\n");
-        printf("\t\t\t   ********ORDENAR EMPLEADO********\n");
-        printf("*****************************************************************************************\n");
-        printf("1. Ordenar nombres de empleados.\n");
-        printf("2. Ordenar empleados por horas trabajadas. \n");
-        printf("3. Ordenar empleados por sueldo. \n");
-        printf("*****************************************************************************************\n");
-        fflush(stdin);
-        printf("Ingrese la opcion deseada: ");
-        scanf("%d", &opcion);
-
-        return opcion;
-
-}

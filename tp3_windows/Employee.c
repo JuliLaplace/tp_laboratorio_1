@@ -128,63 +128,22 @@ int employee_getSueldo(Employee* this,float* sueldo){
 }
 
 
-int employeeCmpHoras(void* a, void* b){
-
-	 int comparacion = 0;
-	 if(a!=NULL && b!=NULL){
-		 Employee* emp1 = (Employee*) a;
-		 Employee* emp2=(Employee*) b;
-		 if (emp1->horasTrabajadas > emp2->horasTrabajadas){ //se fija si emp1 es mayor
-					comparacion = 1;
-				} else {
-					if (emp1->horasTrabajadas < emp2->horasTrabajadas){ //se fija si el emp2 es mayor
-						comparacion = -1;
-					}
-				}
-	 }
-
-
-		    return comparacion;
-
-}
-
-int employeeCmpSueldo(void* a, void* b){
-
-	 int comparacion = 0;
-	 if(a!=NULL && b!=NULL){
-		 Employee* emp1 = (Employee*) a;
-		 Employee* emp2=(Employee*) b;
-		 if (emp1->sueldo > emp2->sueldo){ //se fija si emp1 es mayor
-		 	        comparacion = 1;
-		 	    } else {
-		 	        if (emp1->sueldo < emp2->sueldo){ //se fija si el emp2 es mayor
-		 	            comparacion = -1;
-		 	        }
-		 	    }
-	 }
-
-
-	    return comparacion;
-
-}
 
 int employeeCmpNombre(void* a, void* b){
 
-	int comparacion = 0;
+	int todoOk = 0;
+	char auxNombre1[20];
+	char auxNombre2[20];
 	if(a!=NULL && b!=NULL){
-		Employee* emp1 = (Employee*) a;
-		Employee* emp2=(Employee*) b;
+		employee_getNombre(a, auxNombre1);
+		employee_getNombre(b, auxNombre2);
 
-		if (strcmp(emp1->nombre, emp2->nombre) == 1){
-			comparacion = 1;
-		} else {
-			if (strcmp(emp1->nombre, emp2->nombre) == -1){
-				comparacion = -1;
-			}
+		if(strcmp(auxNombre1,auxNombre2)>0){
+			todoOk=1;
 		}
 	}
 
 
-	    return comparacion;
+	    return todoOk;
 
 }

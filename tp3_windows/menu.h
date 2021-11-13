@@ -24,10 +24,3 @@ int menu();
  *
  */
 int submenu();
-
-/** \brief Funcion que muestra un submmenu para la eleccion de ordenamiento y retorna valor seleccionado por usuario
- *
- * \return int retorna opcion seleccionada por usuario
- *
- */
-int subMenuOrden();

@@ -91,6 +91,17 @@ void getString(char mensaje[],char input[]);
  * \return 1 si el texto contiene solo letras
  */
 int getStringLetras(char mensaje[],char input[]);
-
+/**
+ * \brief Solicita un texto al usuario y lo devuelve
+ * \param mensaje Es el mensaje a ser mostrado
+ * \param input Array donde se cargará el texto ingresado
+ * \return 1 si el texto contiene numeros enteros
+ */
 int getStringNumeros(char mensaje[],char input[]);
+/**
+ * \brief Solicita un texto al usuario y lo devuelve
+ * \param mensaje Es el mensaje a ser mostrado
+ * \param input Array donde se cargará el texto ingresado
+ * \return 1 si el texto contiene numeros flotantes
+ */
 int getStringNumerosFlotantes(char mensaje[],char input[]);

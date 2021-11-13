@@ -115,7 +115,7 @@ int main()
     	            case 8:
 
     	            		if(flag && controller_saveAsText("data.csv", listaEmpleados)){
-    	            			 printf("Empleado cargados con exito.\n");
+    	            			 printf("Datos cargados con exito.\n");
     	            		}else{
     	            			printf("Primero debes cargar datos de empleados en la lista (opcion 1), luego cargarlos como data.cvs (opcion8).\n");
     	            		}
@@ -128,7 +128,7 @@ int main()
 
 
     	            		if(flag && controller_saveAsBinary("data.bin", listaEmpleados)){
-    	            			 printf("Empleado cargados con exito.\n");
+    	            			 printf("Datos cargados con exito.\n");
 
     	            		}else{
     	            			printf("Primero debes cargar datos de empleados en la lista (opcion1), luego cargarlos como data.bin (opcion 9).\n");
