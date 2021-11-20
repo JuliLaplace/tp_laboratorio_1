@@ -27,7 +27,7 @@ void mostrarMascotas(LinkedList* list)
 
     eMascota* aux = NULL;
     printf("*****************************************************************************************\n");
-    printf("*									MASCOTAS         									*\n");
+    printf("*                                    MASCOTAS                                           *\n");
     printf("*****************************************************************************************\n");
     printf("*****************************************************************************************\n");
 	printf("ID         Nombre  	Sexo		Edad		Peso\n");
@@ -45,7 +45,7 @@ void mostrarMascotas(LinkedList* list)
         }
 
     }else{
-    	printf("No hay mascotas para mostrar");
+    	printf("No hay mascotas para mostrar.\n");
     }
 
 }
