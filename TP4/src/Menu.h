@@ -11,4 +11,10 @@
 
 
 #endif /* SRC_MENU_H_ */
+
+/** \brief Funcion que muestra un menu al ususario
+ *
+ * \return int retorna opcion elegida por usuario
+ *
+ */
 int menu();

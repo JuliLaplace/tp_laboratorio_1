@@ -40,10 +40,12 @@ int main(void)
 
 
 	LinkedList* mascotas = NULL;
+	LinkedList* mascotasSubList = NULL;
 	LinkedList* listaMascotasCopia=NULL;
-	eMascota* mascota1 = (eMascota*) malloc(sizeof(eMascota));
-	eMascota* mascota2 = (eMascota*) malloc(sizeof(eMascota));
-	eMascota* mascota3 = (eMascota*) malloc(sizeof(eMascota));
+	eMascota* mascota1 = NULL;//(eMascota*) malloc(sizeof(eMascota));
+	eMascota* mascota2 = NULL;//(eMascota*) malloc(sizeof(eMascota));
+	eMascota* mascota3 = NULL;//(eMascota*) malloc(sizeof(eMascota));
+	eMascota* mascotaEliminada=NULL;
 
 
 	do{
@@ -61,7 +63,9 @@ int main(void)
 				break;
 			case 2:
 				if(flag){
-
+						mascota1 = malloc(sizeof(eMascota));
+						mascota2=malloc(sizeof(eMascota));;
+						mascota3=malloc(sizeof(eMascota));
 						if(mascota1!=NULL && mascota2!=NULL && mascota3!=NULL){
 							 mascota1->id = 1000;
 							 strcpy(mascota1->nombre, "Morty");
@@ -164,7 +168,7 @@ int main(void)
 						printf("No se encuentran todas las mascotas copiadas en la lista.");
 					}
 				}else if(flag && !(flagListaCopia)){
-					printf("Debes copiar la lista (opcion 8) para acceder a este campo.\n");
+					printf("Debes copiar la lista (opcion 7) para acceder a este campo.\n");
 				}else{
 					printf("Primero debes crear una Linkedlist (opcion 1).\n");
 				}
@@ -184,7 +188,7 @@ int main(void)
 						mostrarMascotas(mascotas);
 					}
 				}else if(flag && !flagListaCopia){
-					printf("Debes copiar la lista (opcion 8) para acceder a este campo.\n");
+					printf("Debes copiar la lista (opcion 7) para acceder a este campo.\n");
 				}else{
 					printf("Primero debes crear una Linkedlist (opcion 1).\n");
 				}
@@ -227,25 +231,43 @@ int main(void)
 				break;
 			case 12:
 				if(flag && flagListaCopia){
+					mascotaEliminada = ll_pop(listaMascotasCopia,0);
+					if(mascotaEliminada !=NULL){
+						printf("Se elimino esta mascota:\n");
+						mostrarMascota(mascotaEliminada);
+						printf("\n\n");
+						mostrarMascotas(listaMascotasCopia);
+					}else{
+						printf("No hay mascotas que eliminar.\n");
+					}
+
+				}else if(flag && !flagListaCopia){
+					printf("Debes copiar la lista (opcion 7) para acceder a este campo.\n");
+				}else{
+					printf("Primero debes crear una Linkedlist (opcion 1).\n");
+				}
+				break;
+			case 13:
+				if(flag && flagListaCopia){
 					if(!ll_clear(listaMascotasCopia)){
 						 printf("*****************************************************************************************\n");
-						 printf("*							COPIA DE LISTA DE MASCOTAS									 *\n");
+						 printf("*                         COPIA DE LISTA DE MASCOTAS                                    *\n");
 						 printf("*****************************************************************************************\n");
-						printf("Lista de mascotas (copia) eliminada correctamente.\n");
+								printf("Lista de mascotas (copia) eliminada correctamente.\n");
 								mostrarMascotas(listaMascotasCopia);
 					}
 				}else if(flag && !flagListaCopia){
-					printf("Debes copiar la lista (opcion 8) para acceder a este campo.\n");
+					printf("Debes copiar la lista (opcion 7) para acceder a este campo.\n");
 				}else{
 					printf("Primero debes crear una Linkedlist (opcion 1).\n");
 				}
 
 				break;
-			case 13:
+			case 14:
 				if(flag && flagCargaMascotas){
 					indiceMascota = ll_indexOf(mascotas,mascota3);
-					if(indiceMascota!=-1){
-						printf("La mascota 'Elvis' se encuentra en el indice %d", indiceMascota);
+					if(indiceMascota!= -1){
+						printf("La mascota 'Elvis' se encuentra en el indice %d.\n", indiceMascota);
 					}else{
 						printf("No existe la mascota 'Elvis' en la lista.\n");
 					}
@@ -255,10 +277,28 @@ int main(void)
 					printf("Primero debes crear una Linkedlist (opcion 1).\n");
 				}
 				break;
-			case 14:
+			case 15:
+				if(flag && flagCargaMascotas){
+					mascotasSubList = ll_subList(mascotas, 0, 2);
+					if(mascotasSubList!=NULL){
+						printf("SubLista de mascotas desde el indice 0 al indice 2 (no incluido) creada correctamente.\n");
+						mostrarMascotas(mascotasSubList);
+						ll_deleteLinkedList(mascotasSubList);
+
+					}else{
+						printf("No hay mascotas que mostrar.\n");
+					}
+				}else if(flag && !flagCargaMascotas){
+					printf("Debes cargar datos de mascotas en la LinkedList primero (opcion 2).\n");
+				}else{
+					printf("Primero debes crear una Linkedlist (opcion 1).\n");
+				}
+				break;
+			case 16:
 				if(flag){
 					if(!(ll_deleteLinkedList(mascotas))){
 						 printf("Lista de mascotas (original) eliminada correctamente.\n\n");
+						 flag=0;
 					}else{
 						printf("El puntero en nulo (NULL)");
 					}
@@ -267,7 +307,7 @@ int main(void)
 				}
 
 				break;
-			case 16:
+			case 17:
 				seguir = 'n';
 				break;
 			 default:

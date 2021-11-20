@@ -19,6 +19,20 @@ typedef struct{
 
 #endif /* SRC_MASCOTAS_H_ */
 
+
+/** \brief Funcion que muestra una sola mascota
+ *
+ * \param unaMascota eMascota*
+ * \return void
+ *
+ */
 void mostrarMascota(eMascota* unaMascota);
+
+/** \brief Funcion que muestra todas las mascotas de una linkedList
+ *
+ * \param list LinkedList* lista a mostrar
+ * \return void
+ *
+ */
 void mostrarMascotas(LinkedList* list);
 int ordenarEdadesMascotas(void* mascota1, void* mascota2);

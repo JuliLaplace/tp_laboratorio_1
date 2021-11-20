@@ -17,7 +17,7 @@ void mostrarMascota(eMascota* unaMascota)
 {
     if(unaMascota!= NULL)
     {
-        printf("%d         %10s  %c %d %.3f\n", unaMascota->id, unaMascota->nombre, unaMascota->sexo, unaMascota->edad, unaMascota->peso);
+        printf("%d    %10s      %c        %d       %.3f\n", unaMascota->id, unaMascota->nombre, unaMascota->sexo, unaMascota->edad, unaMascota->peso);
     }
 }
 
@@ -60,7 +60,6 @@ int ordenarEdadesMascotas(void* mascota1, void* mascota2)
 
     if(mascota1 != NULL && mascota2 != NULL)
     {
-
         if(((eMascota*)mascota1)->edad <(((eMascota*)mascota2)->edad)){
         	retorno = 1;
         }else{
