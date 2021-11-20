@@ -60,7 +60,7 @@ static Node* getNode(LinkedList* this, int nodeIndex)
             auxNode->pNextNode      // direccion de vagon 1
             auxNode = auxNode->pNextNode;   //direccion de vagon 2
             pNode = auxNode;*/
-            pNode = this->pFirstNode;       //saco el if por que jamas va a entrar cuando valga , entonces retorna lo anterior si el indice es 0
+            pNode = this->pFirstNode;       //saco el if por que jamas va a entrar cuando valga 0, entonces retorna lo anterior si el indice es 0
             while(nodeIndex>0){
                 pNode = pNode->pNextNode;
                 nodeIndex--;
