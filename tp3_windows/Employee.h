@@ -1,3 +1,4 @@
+#include"LinkedList.h"
 #ifndef employee_H_INCLUDED
 #define employee_H_INCLUDED
 typedef struct
@@ -118,3 +119,6 @@ int employee_getSueldo(Employee* this,float* sueldo);
  */
 
 int employeeCmpNombre(void* a, void* b);
+
+
+int employee_nextId(LinkedList* pArrayList, int* id);

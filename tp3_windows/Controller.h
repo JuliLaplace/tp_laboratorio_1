@@ -34,7 +34,7 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee);
  * \return int retorna 1 si logro cargar el empleado correctamente o 0 si no pudo realizar la carga
  *
  */
-int controller_addEmployee(LinkedList* pArrayListEmployee, int* pId);
+int controller_addEmployee(LinkedList* pArrayListEmployee);
 
 /** \brief Modificar datos de empleado
  *

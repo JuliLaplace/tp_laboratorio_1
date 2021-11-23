@@ -23,10 +23,9 @@
 
 int main()
 {
-    int option = 0;
+    char seguir = 's';
     setbuf(stdout, NULL);
     LinkedList* listaEmpleados = ll_newLinkedList();
-    int id = 1001;
     int flag=0;
 
     if(listaEmpleados==NULL)
@@ -57,10 +56,10 @@ int main()
     	            	                system("pause");
     	            	                break;
     	            case 3:
-    	            	 if(controller_addEmployee(listaEmpleados, &id)){
+    	            	 if(flag && controller_addEmployee(listaEmpleados)){
     	            	                    printf("Empleado cargado con exito.\n");
     	            	                }else{
-    	            	                	printf("Error en ingreso de datos: no se pudo cargar el empleado.\n");
+    	            	                	printf("Primero debes cargar datos de empleados en la lista.\n");
     	            	                }
     	            	                system("pause");
     	            	                break;
@@ -133,7 +132,7 @@ int main()
     	            			 printf("Datos cargados con exito.\n");
 
     	            		}else{
-    	            			printf("Primero debes cargar datos de empleados en la lista (opcion1), luego cargarlos como data.bin (opcion 9).\n");
+    	            			printf("Primero debes cargar datos de empleados en la lista (opcion 2), luego cargarlos como data.bin (opcion 9).\n");
     	            		}
 
 
@@ -141,7 +140,7 @@ int main()
     	                break;
 
     	            case 10:
-    	            	 option = 10;
+    	            	 seguir = 'n';
     	            	  break;
 
     	            default:
@@ -149,7 +148,7 @@ int main()
     		            system("pause");
     	                break;
     	        }
-    }while(option != 10);
+    }while(seguir != 'n');
     return 0;
 }
 

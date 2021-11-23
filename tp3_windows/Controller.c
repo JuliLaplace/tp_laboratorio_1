@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
+#include<ctype.h>
 #include "LinkedList.h"
 #include "Employee.h"
 #include "parser.h"
 #include "Controller.h"
 #include "utn.h"
 #include "menu.h"
-
 
 int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 {
@@ -19,8 +19,9 @@ int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 
 	        if(file==NULL){
 	            printf("No se pudo abrir el archivo\n");
-	            exit(1);
+
 	        }else{
+
 	          todoOk = parser_EmployeeFromText(file, pArrayListEmployee);
 
 	        }
@@ -41,7 +42,7 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 
 	        if(file==NULL){
 	            printf("No se pudo abrir el archivo ya que no existe. Primero debe crear un archivo guardandolo como .bin (opcion 9).\n");
-	            system("pause");
+
 	        }else{
 	          todoOk = parser_EmployeeFromBinary(file, pArrayListEmployee);
 
@@ -54,12 +55,12 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 }
 
 
-int controller_addEmployee(LinkedList* pArrayListEmployee, int* pId)
+int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
 	int todoOk=0;
 	    Employee* auxEmpleado=NULL;
 
-		int auxId;
+	    int nextId=0;
 		char auxNombre[128];
 		char auxHoras[128];
 		char auxSueldo[128];
@@ -67,8 +68,9 @@ int controller_addEmployee(LinkedList* pArrayListEmployee, int* pId)
 
 		if(pArrayListEmployee != NULL){
 			auxEmpleado = employee_new();
+			employee_nextId(pArrayListEmployee, &nextId);
 
-			auxId = (*pId);
+
 	        fflush(stdin);
 
 			while(!getStringLetras("Ingrese nombre de empleado: ", auxNombre)){
@@ -80,17 +82,19 @@ int controller_addEmployee(LinkedList* pArrayListEmployee, int* pId)
 
 	             printf("Valor de horas trabajadas invalido. \n");
 			}
-			while(!getStringNumerosFlotantes("Ingrese sueldo de empleado: ", auxSueldo)){
+			while(!getStringNumeros("Ingrese sueldo de empleado: ", auxSueldo)){
 
 	            printf("Sueldo invalido. \n");
 			}
 
-			if(auxEmpleado != NULL && employee_setId(auxEmpleado,auxId) && employee_setNombre(auxEmpleado,auxNombre) && employee_setSueldo(auxEmpleado,atof(auxSueldo)) && employee_setHorasTrabajadas(auxEmpleado,atoi(auxHoras))){
+			/*auxEmpleado->id=*pId;
+			*pId=*pId+1;*/
+			if(auxEmpleado != NULL && employee_setId(auxEmpleado, nextId) && employee_setNombre(auxEmpleado,auxNombre) && employee_setSueldo(auxEmpleado,atof(auxSueldo)) && employee_setHorasTrabajadas(auxEmpleado,atoi(auxHoras))){
 				if(!ll_add(pArrayListEmployee,auxEmpleado)){
 
 
 					todoOk = 1;
-					(*pId)++;
+
 
 				}else{
 

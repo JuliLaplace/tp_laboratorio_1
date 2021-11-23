@@ -147,3 +147,25 @@ int employeeCmpNombre(void* a, void* b){
 	    return todoOk;
 
 }
+
+int employee_nextId(LinkedList* pArrayList, int* id)
+{
+    int todoOk = 0;
+    int mayor=0;
+    Employee* aux = NULL;
+
+    if(pArrayList != NULL)
+    {
+        for(int i = 0; i<ll_len(pArrayList); i++)
+        {
+            aux = (Employee*) ll_get(pArrayList, i);
+            if(i==0 || aux->id > mayor)	//i se usa como bandera
+            {
+                mayor = aux->id;
+            }
+        }
+        *id = mayor+1;
+        todoOk = 1;
+    }
+    return todoOk;
+}
