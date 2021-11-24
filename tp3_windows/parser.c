@@ -38,6 +38,7 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
 	Employee* auxEmpleado;
 	    int cant;
+	    int todoOk=0;
 	    while(!feof(pFile))
 	    {
 	        auxEmpleado=employee_new();
@@ -50,11 +51,12 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 	                break;
 	            }
 	            ll_add(pArrayListEmployee,auxEmpleado);
+	            todoOk=1;
 	        }
 
 
 	    }
 	    fclose(pFile);
-	    return 1;
+	    return todoOk;
 
 }
